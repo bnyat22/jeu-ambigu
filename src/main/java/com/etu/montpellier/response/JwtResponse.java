@@ -1,6 +1,6 @@
 package com.etu.montpellier.response;
 
-import etu.etu.domain.Joueur;
+import com.etu.montpellier.domain.Joueur;
 import lombok.Getter;
 import lombok.Setter;
 
