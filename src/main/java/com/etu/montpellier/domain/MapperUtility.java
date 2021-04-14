@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class MapperUtility {
 
-    public etu.etu.domain.MotAmbigu buildOrderDTO(int mot_id, String mot , String choix1,
+    public MotAmbigu buildOrderDTO(int mot_id, String mot , String choix1,
                                                   String choix2 , String choix3 , String choix4) {
-        etu.etu.domain.MotAmbigu motAmbigu = new etu.etu.domain.MotAmbigu();
+        MotAmbigu motAmbigu = new MotAmbigu();
         motAmbigu.setId(mot_id);
         motAmbigu.setMot(mot);
         motAmbigu.setChoix1(choix1);
