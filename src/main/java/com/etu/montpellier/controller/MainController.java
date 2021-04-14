@@ -183,8 +183,8 @@ public class MainController {
     // @PreAuthorize("hasRole('ADMIN') or ('JOUEUR_INTERMIDAIRE') or ('JOUEUR_EXPERT')")
     public String addGlose(@ModelAttribute("glose") Glose glose , Model model) {
         setCurrentQuestion(model);
-        Expert expert = expertRepository.getById(getUserId());
-        if (!checkCreditGlose(expert))
+        Intermédiaire intermédiaire = intermidaireRepository.getById(getUserId());
+        if (!checkCreditGlose(intermédiaire))
             return "errorCredit";
         Phrase phrase = phraseRepository.getByPhrase(glose.getPhrase());
         System.out.println(phrase.getPhrase() + "atw");
@@ -212,7 +212,6 @@ public class MainController {
                     return "jouer";
                 }
                 System.out.println("hata erash");
-                Intermédiaire intermédiaire = intermidaireRepository.getById(1);
                 intermédiaire.setNbGloses(intermédiaire.getNbGloses() +1);
                 intermédiaire.setCredit(intermédiaire.getCredit()-15);
                 intermidaireRepository.save(intermédiaire);
