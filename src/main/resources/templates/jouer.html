@@ -108,7 +108,7 @@
     <div class="row">
         <div class="section2">
             <div class="bt_main">
-    <div class="discover_bt"><button class="btn btn-warning btn-block  my-2 my-sm-0 mr-lg-auto" th:onclick="|window.location.href= '/main/getGlose'|">ajouer une glose</button></div>
+    <div class="discover_bt"><button sec:authorize="hasAnyRole('ROLE_ADMIN' , 'ROLE_EXPERT' , 'ROLE_INTERMIDAIRE')" class="btn btn-warning btn-block  my-2 my-sm-0 mr-lg-auto" th:onclick="|window.location.href= '/main/getGlose'|">ajouer une glose</button></div>
             </div>
     </div>
     </div>
