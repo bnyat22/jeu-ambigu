@@ -93,7 +93,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="post" th:action="@{/admin/makeadmen}" th:object="${user}">
+                                    <form method="post" th:action="@{/admin/makeadmin}" th:object="${user}">
                                         <select hidden="hidden" th:field="*{pseudo}" >
                                             <option hidden="hidden" th:value="${u.getPseudo()}" selected/>
                                         </select>

@@ -321,7 +321,7 @@ public class MainController {
     }
     private boolean checkCreditGlose(Joueur joueur) {
 
-        return joueur.getCredit()>15;
+        return joueur.getCredit()>15 || joueur.getUtilisateur().getRoles().contains(ERoles.ROLE_ADMIN);
     }
     private void setCurrentQuestion(Model model)
     {

@@ -130,7 +130,7 @@ public class AjouteController {
     }
     private boolean checkCreditPhrase(Joueur joueur) {
 
-       return joueur.getCredit()>=30;
+       return joueur.getCredit()>=30 || joueur.getUtilisateur().getRoles().contains(ERoles.ROLE_ADMIN);
     }
 
 }
