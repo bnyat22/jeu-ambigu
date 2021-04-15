@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/ajoute")
@@ -60,8 +61,10 @@ public class AjouteController {
     @PostMapping(value = "/add", params = "action=le")
     public String addPhrase(@ModelAttribute("addPhrase") Question question) {
         Expert expert = expertRepository.getById(getUserId());
-         if (!checkCreditPhrase(expert))
-            return "errorCredit";
+        if (!checkAdmin()) {
+            if (!checkCreditPhrase(expert))
+                return "errorCredit";
+        }
         Phrase p = new Phrase(question.getPhrase(), expert);
         List<MotAmbigu> motAmbigus = new ArrayList<>();
         List<PointQuestion> points = new ArrayList<>();
@@ -91,6 +94,7 @@ public class AjouteController {
         phraseRepository.save(p);
         pointsRepository.saveAll(pointsList);
         expert.setNbPhrases(expert.getNbPhrases() + 1);//quand ce joeur ajoute une phrase son nombre de phrase ajoutée augemente
+        if (!checkAdmin())
         expert.setCredit(expert.getCredit()-30);
         expertRepository.save(expert);
         return "success";
@@ -130,7 +134,20 @@ public class AjouteController {
     }
     private boolean checkCreditPhrase(Joueur joueur) {
 
-       return joueur.getCredit()>=30 || joueur.getUtilisateur().getRoles().contains(ERoles.ROLE_ADMIN);
+       return joueur.getCredit()>=30;
     }
+
+    private boolean checkAdmin()
+    {
+
+        Set<Role> roles = utilisateurRepository.findById(getUserId()).get().getRoles();
+        for (Role r: roles)
+        {
+            if (r.getName().equals(ERoles.ROLE_ADMIN))
+                return true;
+        }
+        return false;
+    }
+
 
 }

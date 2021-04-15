@@ -28,6 +28,8 @@ public class AdminController {
     private ExpertRepository expertRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private IntermidaireRepository intermidaireRepository;
 
     @GetMapping("/")
     public String getAdmin()
@@ -42,6 +44,10 @@ public class AdminController {
       Utilisateur utilisateur = utilisateurRepository.findByPseudo(user.getPseudo()).get();
       Set<Role> roles = utilisateur.getRoles();
       roles.add(roleRepository.findByName(ERoles.ROLE_ADMIN));
+        if (expertRepository.countById(utilisateur.getId()) == 0)
+            expertRepository.insert(utilisateur.getId());
+        if (intermidaireRepository.countById(utilisateur.getId()) == 0)
+            intermidaireRepository.insert(utilisateur.getId());
       utilisateurRepository.save(utilisateur);
         return getUsers(model);
     }
