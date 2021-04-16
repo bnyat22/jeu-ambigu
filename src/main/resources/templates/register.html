@@ -73,8 +73,6 @@
             <form class="form-signin" method="post" th:action="@{/auth/signup}" th:object="${regForm}">
                 <label th:if="${errorPseudo}" th:class="text-danger" th:text="${errorPseudo}"/>
                 <label th:if="${errorEmail}" th:class="text-danger" th:text="${errorEmail}"/>
-                <label th:if="${errorPassConfirm}" th:class="text-danger" th:text="${errorPassConfirm}"/>
-                <label th:if="${errorPassLength}" th:class="text-danger" th:text="${errorPassLength}"/>
             <div class="form-label-group">
             <input type="text" id="pseudo" class="form-control" placeholder="Pseudo" th:field="*{pseudo}"required autofocus>
             <label for="pseudo">Pseudo</label>
