@@ -316,19 +316,40 @@ public class MainController {
             points.setPoint_choix3(10);
         if (points.getPoint_choix4() < 5 && points.getNJouer_choix4() > 5)
             points.setPoint_choix4(10);
+        if (points.getPoint_choix2() <= 10 && points.getNJouer_choix2() > 10)
+            points.setPoint_choix2(20);
+        if (points.getPoint_choix3() <= 10 && points.getNJouer_choix3() > 10)
+            points.setPoint_choix3(20);
+        if (points.getPoint_choix4() <= 10 && points.getNJouer_choix4() > 10)
+            points.setPoint_choix4(20);
 
 
     }
     private boolean checkCreditGlose(Joueur joueur) {
 
-        return joueur.getCredit()>15 || joueur.getUtilisateur().getRoles().contains(ERoles.ROLE_ADMIN);
+        return joueur.getCredit()>15 || checkAdmin();
+    }
+    private boolean checkAdmin()
+    {
+
+        Set<Role> roles = utilisateurRepository.findById(getUserId()).get().getRoles();
+        for (Role r: roles)
+        {
+            if (r.getName().equals(ERoles.ROLE_ADMIN))
+                return true;
+        }
+        return false;
     }
     private void setCurrentQuestion(Model model)
     {
         if (currentIndex >= questions.size()) {
             return;
         }
-        Phrase questionsSuivante = questions.get(currentIndex - 1);
+        Phrase questionsSuivante;
+        if (currentIndex == 0)
+            questionsSuivante = questions.get(currentIndex);
+        else
+            questionsSuivante = questions.get(currentIndex - 1);
 
         List<ChoixReponse> choixReponses = getMotsDePhrase(questionsSuivante.getId());
         System.out.println("size reponse wordakan "+ choixReponses.size());
