@@ -78,41 +78,41 @@
                             </div>
 <div th:each="mot , i : ${addPhrase.mots}">
     <div class="form-label-group">
-        <input type="text" id="mo" class="form-control" th:field="*{mots[__${i.index}__].mot} "placeholder="word" required>
-        <label for="mo">Mot</label>
+        <input type="text" th:id="${i} + mot" class="form-control" th:field="*{mots[__${i.index}__].mot} "placeholder="word" required>
+        <label th:for="${i} + mot">Mot</label>
     </div>
 
-                            <div class="form-label-group">
-                                <input type="text" id="choix1" class="form-control" th:field="*{mots[__${i.index}__].choix1} "placeholder="choix 1" required>
-                                <label for="choix1">Choix 1</label>
-                            </div>
     <div class="form-label-group">
-        <input type="text" id="point1" class="form-control" th:field="*{mots[__${i.index}__].point1} "placeholder="point 1" required>
-        <label for="point1">Point de choix 1</label>
-    </div>
-                            <div class="form-label-group">
-                                <input type="text" id="choix2" class="form-control" th:field="*{mots[__${i.index}__].choix2} "placeholder="choix 2" required>
-                                <label for="choix2">Choix 2</label>
-                            </div>
-    <div class="form-label-group">
-        <input type="text" id="point2" class="form-control" th:field="*{mots[__${i.index}__].point2} "placeholder="point 2" required>
-        <label for="point2">Point de choix 2</label>
+        <input type="text" th:id="${i} + choix1" class="form-control" th:field="*{mots[__${i.index}__].choix1} "placeholder="choix 1" required>
+        <label th:for="${i} + choix1">Choix 1</label>
     </div>
     <div class="form-label-group">
-        <input type="text" id="choix3" class="form-control" th:field="*{mots[__${i.index}__].choix3} "placeholder="choix 3" >
-        <label for="choix3">Choix 3</label>
+        <input type="text" th:id="${i} + point1" class="form-control" th:field="*{mots[__${i.index}__].point1} "placeholder="point 1">
+        <label th:for="${i} + point1">Point de choix 1</label>
     </div>
     <div class="form-label-group">
-        <input type="text" id="point3" class="form-control" th:field="*{mots[__${i.index}__].point3} "placeholder="point 3" required>
-        <label for="point3">Point de choix 1</label>
+        <input type="text" th:id="${i} + choix2" class="form-control" th:field="*{mots[__${i.index}__].choix2} "placeholder="choix 2" required>
+        <label th:for="${i} + choix2">Choix 2</label>
     </div>
     <div class="form-label-group">
-        <input type="text" id="choix4" class="form-control" th:field="*{mots[__${i.index}__].choix4} "placeholder="choix 4" >
-        <label for="choix4">Choix 4</label>
+        <input type="text" th:id="${i} + point2" class="form-control" th:field="*{mots[__${i.index}__].point2} "placeholder="point 2">
+        <label th:for="${i} + point2">Point de choix 2</label>
     </div>
     <div class="form-label-group">
-        <input type="text" id="point4" class="form-control" th:field="*{mots[__${i.index}__].point4} "placeholder="point 4" required>
-        <label for="point4">Point de choix 4</label>
+        <input type="text" th:id="${i} + choix3" class="form-control" th:field="*{mots[__${i.index}__].choix3} "placeholder="choix 3" >
+        <label th:for="${i} + choix3">Choix 3</label>
+    </div>
+    <div class="form-label-group">
+        <input type="text" th:id="${i} + point3" class="form-control" th:field="*{mots[__${i.index}__].point3} "placeholder="point 3">
+        <label th:for="${i} + point3">Point de choix 3</label>
+    </div>
+    <div class="form-label-group">
+        <input type="text" th:id="${i} + choix4" class="form-control" th:field="*{mots[__${i.index}__].choix4} "placeholder="choix 4" >
+        <label th:for="${i} + choix4">Choix 4</label>
+    </div>
+    <div class="form-label-group">
+        <input type="text" th:id="${i} + choix4" class="form-control" th:field="*{mots[__${i.index}__].point4} "placeholder="point 4">
+        <label th:for="${i} + choix4">Point de choix 4</label>
     </div>
                            </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="action" value="la">ajouter un nouveau mot ambigu</button>

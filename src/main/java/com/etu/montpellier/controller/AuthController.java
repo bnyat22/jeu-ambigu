@@ -116,6 +116,18 @@ try {
             return "register";
 
         }
+        if (!signupRequest.getPassword().equals(signupRequest.getPasswordConfirm()))
+        {
+            model.addAttribute("errorPassConfirm" , "Le mot de passe dans le confirmation n'est pas correcte");
+            return "register";
+
+        }
+        if (signupRequest.getPassword().length() <5)
+        {
+            model.addAttribute("errorPassLength" , "Le mot de passe doit être plus ou égal à 5");
+            return "register";
+
+        }
         Utilisateur utilisateur = new Utilisateur(signupRequest.getPseudo() ,
                 signupRequest.getEmail()
         ,passwordEncoder.encode(signupRequest.getPassword()));

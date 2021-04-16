@@ -39,7 +39,7 @@
 
     </style>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
     <a class="navbar-brand">Ambiguss</a>
     <br>
@@ -254,6 +254,12 @@
         });
     }
 
+</script>
+<script type="text/javascript">
+    window.history.forward();
+    function noBack() {
+        window.history.forward();
+    }
 </script>
 </body>
 </html>
