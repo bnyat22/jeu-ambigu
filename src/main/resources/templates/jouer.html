@@ -47,7 +47,7 @@
             class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
     <div id="my-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/auth/'|">Acceuil</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/'|">Acceuil</a></li>
             <li class="nav-item"><a class="nav-link" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:onclick="|window.location.href= '/admin/'|">Admin</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -171,10 +171,12 @@
         <div class="row">
             <div class="col-lg-6" id="contact">
                 <h4> Contacter nous </h4>
-                <input type="text" class="form-control" placeholder="Nom Complet">
-                <input type="email" class="form-control" placeholder="Adresse Email">
-                <textarea class="form-control" placeholder="Message"></textarea>
-                <a href="#" class="submit-button">ENVOYER <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <label>Email: </label>
+                <a href="mailto:JeuAmbigue@gmail.com">jeuAmbigue@gmial.com</a>
+                <br>
+                <label>Numero Portable: </label>
+                <label>0767564857</label>
+
             </div>
             <div class="col-lg-6">
                 <div class="row">
