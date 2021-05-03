@@ -71,25 +71,30 @@
           <div class="card-body">
             <h5 class="card-title text-center">Formulaire d'inscription</h5>
             <form class="form-signin" method="post" th:action="@{/auth/signup}" th:object="${regForm}">
-                <label th:if="${errorPseudo}" th:class="text-danger" th:text="${errorPseudo}"/>
-                <label th:if="${errorEmail}" th:class="text-danger" th:text="${errorEmail}"/>
+
             <div class="form-label-group">
             <input type="text" id="pseudo" class="form-control" placeholder="Pseudo" th:field="*{pseudo}"required autofocus>
             <label for="pseudo">Pseudo</label>
             </div>
+                <label th:if="${errorPseudo}" th:class="text-danger" th:text="${errorPseudo}"/>
               <div class="form-label-group">
                 <input  type="email" id="inputEmail" class="form-control" th:field="*{email}" placeholder="Adresse mail" required autofocus>
                 <label for="inputEmail">Adresse mail</label>
               </div>
+                <label th:if="${errorEmail}" th:class="text-danger" th:text="${errorEmail}"/>
 
               <div class="form-label-group">
                 <input type="password" id="password" class="form-control" th:field="*{password} "placeholder="Mot de passe" required>
                 <label for="password">Mot de passe</label>
               </div>
+                <label th:if="${errorChiffre}" th:class="text-danger" th:text="${errorChiffre}"/>
+                <label th:if="${errorMinMax}" th:class="text-danger" th:text="${errorMinMax}"/>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                <input type="password" id="inputPassword" class="form-control" th:field="*{passwordConfirm}" placeholder="Mot de passe" required>
                 <label for="inputPassword">Confirmation du Mot de passe</label>
+
               </div>
+                <label th:if="${errorPass}" th:class="text-danger" th:text="${errorPass}"/>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Valider</button>
               <hr class="my-4">

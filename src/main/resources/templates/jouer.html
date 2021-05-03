@@ -71,10 +71,13 @@
     <div class="container">
         <div class="row">
             <h1 class="best_taital">Jouons</h1>
+
             <div class="box_main">
 
             </div>
             <div class="section2" >
+                <h3 th:if="${interm}" th:class="text-secondary" th:text="${interm}"/>
+                <h3 th:if="${expert}" th:class="text-secondary" th:text="${expert}"/>
                 <br>
                 <h1 align="center" th:if="${question.get(0).getPhrase()}" th:utext="${question.get(0).getPhrase()}">..</h1>
 

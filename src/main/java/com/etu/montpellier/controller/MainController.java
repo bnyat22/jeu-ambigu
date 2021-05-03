@@ -5,6 +5,8 @@ import com.etu.montpellier.repository.*;
 import com.etu.montpellier.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +20,8 @@ import java.util.*;
 @RequestMapping("/main")
 public class MainController {
 
+    @Autowired
+    AuthenticationManager authenticationManager;
     @Autowired
     private PhraseRepository phraseRepository;
 
@@ -165,7 +169,7 @@ public class MainController {
             }
         }
 
-        checkUserPoints(getUserId());
+        checkUserPoints(getUserId() , model);
         options.isValide = true;
         model.addAttribute("options" , options);
         model.addAttribute("question", choixReponses);
@@ -223,7 +227,7 @@ public class MainController {
         return "jouer";
 
     }
-    private void checkUserPoints(long id) {
+    private void checkUserPoints(long id , Model model) {
 
         Joueur joueur = joueurRepository.getById(id);
         if (joueur.getPoint()> 100 && intermidaireRepository.countById(id) == 0)
@@ -233,6 +237,8 @@ public class MainController {
             Set<Role> roles = utilisateur.getRoles();
             roles.add(roleRepository.findByName(ERoles.ROLE_INTERMIDAIRE));
             utilisateurRepository.save(utilisateur);
+            model.addAttribute("interm" , "Félicitation votre niveau est augmenté à Intérmidiare." +
+                    "Vous avez le droit d'ajouter des gloses aux phrases , pour voir le changement , veuillez faire logout et login");
         }
         if (joueur.getPoint()> 200 && expertRepository.countById(id) == 0)
         {
@@ -241,6 +247,8 @@ public class MainController {
             Set<Role> roles = utilisateur.getRoles();
             roles.add(roleRepository.findByName(ERoles.ROLE_EXPERT));
             utilisateurRepository.save(utilisateur);
+            model.addAttribute("expert" , "Félicitation votre niveau est augmenté à Expert" +
+                    " Vous avez le droit d'ajouter des phrases , pour voir le changement , veuillez faire logout et login");
         }
     }
 

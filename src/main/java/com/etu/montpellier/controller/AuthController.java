@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,8 +55,7 @@ public class AuthController {
       return "login";
   }
   @GetMapping("/index")
-  public String getIndex(Model model)
-  {
+  public void getIndex(Model model , HttpServletResponse response) throws IOException {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       for (GrantedAuthority admin:authentication.getAuthorities())
       {
@@ -64,7 +65,7 @@ public class AuthController {
           }
       }
 
-      return "index";
+       response.sendRedirect("/");
   }
     @GetMapping("/logout")
     public String Logout(Model model)
@@ -74,7 +75,7 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public String authenticateUtilisateur(@ModelAttribute("personForm") LoginRequest loginRequest , Model model)
+    public String authenticateUtilisateur(@ModelAttribute("personForm") LoginRequest loginRequest , Model model , HttpServletResponse response)
     {
 
 try {
@@ -86,9 +87,9 @@ try {
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
     model.addAttribute("jwt", userDetails.getUsername());
 
-
-    return getIndex(model);
-} catch (BadCredentialsException e)
+    getIndex(model , response);
+    return "index";
+} catch (BadCredentialsException | IOException e)
 {
 
     model.addAttribute("bad" , "Votre pseudo ou mot de passe n'est pas correcte");
@@ -115,6 +116,26 @@ try {
             model.addAttribute("errorEmail" , "Cet email exist déjà");
             return "register";
 
+        }
+
+
+        if (utilisateurRepository.existsByEmail(signupRequest.getEmail()))
+        {
+            model.addAttribute("errorEmail" , "Cet email exist déjà");
+            return "register";
+
+        }
+        if (!PasswordValidator.isValid(signupRequest.getPassword()))
+        {
+            model.addAttribute("errorChiffre" , "Le mot de passe ne doit pas être moins de 8");
+            model.addAttribute("errorMinMax" , "il doit y avoir au moins une lettre majuscule ,minuscule et un chiffre ");
+            return "register" ;
+        }
+        System.out.println(signupRequest.getPasswordConfirm() + "dlnyabunawa");
+        if (!signupRequest.getPassword().equals(signupRequest.getPasswordConfirm()))
+        {
+            model.addAttribute("errorPass" , "les mots de passes ne sont pas égaux");
+            return "register" ;
         }
 
         Utilisateur utilisateur = new Utilisateur(signupRequest.getPseudo() ,
