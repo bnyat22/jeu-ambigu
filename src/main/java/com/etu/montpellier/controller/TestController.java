@@ -74,7 +74,7 @@ public class TestController {
     @GetMapping("/suivante")
     public String nextQuestion(Model model) {
         if (currentIndex >= 5) {
-            return "fin";
+            return "finTest";
         }
         Phrase questionsSuivante = questions.get(currentIndex);
 
