@@ -49,8 +49,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/'|">Acceuil</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:onclick="|window.location.href= '/admin/'|">Admin</a></li>
+                <li class="nav-item"><a class="nav-link"  href="#" th:onclick="|window.location.href= '/about/'|">À propos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link"  th:onclick="|window.location.href= '/about/'|">À propos</a></li>
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <a href="#" class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase" sec:authorize="isAnonymous()" th:onclick="|window.location.href= '/auth/'|">Se connecter</a>
@@ -64,16 +65,24 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Désolé</span>  </h1>
+                <h1>Qui sommes-nous</span>  </h1>
 
 
-                <p>Vous n'avez pas assez de crédit!</p>
+                <p>Ambiguss est un site web réalisé dans le cadre d'un TER (Travail d'Étude et de Recherche) de première année de master informatique .
+                    Il permet de produire des corpus de phrases annotées sémantiquement, permettant ainsi d'identifier le sens correct d'un mot.</p>
 
-                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/rank/'|">Rank<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/'|">Retounrez<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                   <h4> Tuteur : Mathieu Lafourcade></h4>
+                <h4> Groupe : MAAB</h4>
+                  <h4>  Membres :</h4>
+                <h4> Abla Amharref</h4>
+                <h4>   Laila Laaroussi </h4>
+                    <h4>   Majda El Marouni</h4>
+                <h4>   Binyat Aziz Sharif  </h4>
+                 <p>   Il s'agit d'un GWAP (Game With A Purpose => Jeu avec un but). Dans notre cas pour faire de la désambiguïsation lexicale.
+                    Ce type de jeu est très utilisé dans le milieu scientifique car il permet d'acquérir des données utiles, tout en étant ludique</p>
             </div>
             <div class="col-md-6">
-                <div class="card"><img class="card-img-top img-fluid" src="images/fini.png" alt=""></div>
+                <div class="card bg-transparent"><img class="card-img-top img-fluid" th:src="@{images/fini.png}" alt=""></div>
             </div>
         </div>
     </div>
@@ -92,10 +101,12 @@
         <div class="row">
             <div class="col-lg-6" id="contact">
                 <h4> Contacter nous </h4>
-                <input type="text" class="form-control" placeholder="Nom Complet">
-                <input type="email" class="form-control" placeholder="Adresse Email">
-                <textarea class="form-control" placeholder="Message"></textarea>
-                <a href="#" class="submit-button">ENVOYER <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <label>Email: </label>
+                <a href="mailto:JeuAmbigue@gmail.com">jeuAmbigue@gmial.com</a>
+                <br>
+                <label>Numero Portable: </label>
+                <label>0767564857</label>
+
             </div>
             <div class="col-lg-6">
                 <div class="row">

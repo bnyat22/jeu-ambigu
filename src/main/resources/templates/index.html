@@ -40,7 +40,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
-    <div class="container"><a class="navbar-brand">Ambiguss</a>
+    <div class="container"><a class="navbar-brand">Enlight</a>
         <br>
         <button class="navbar-toggler" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"><span
                 class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
@@ -49,6 +49,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/'|">Acceuil</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:onclick="|window.location.href= '/admin/'|">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"  th:onclick="|window.location.href= '/about/'|">À propos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
 
@@ -74,7 +75,8 @@
 <p>À vous de choisir en mettant le sens qui vous semble le plus approprié ;) </p>
 
                 <a href="#" sec:authorize= "isAuthenticated()" th:onclick="|window.location.href= '/main/commence'|">Jouer <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/rank/get'|">Rank <i class="fa fa-angle-right" aria-hidden="true"></i></a><br>
+                <a href="#" sec:authorize="isAnonymous()" th:onclick="|window.location.href= '/test/commence'|">Jouer <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/rank/get'|">Classement <i class="fa fa-angle-right" aria-hidden="true"></i></a><br>
                 <a href="#"  sec:authorize="hasAnyRole('ROLE_ADMIN' , 'ROLE_EXPERT')"  th:onclick="|window.location.href= '/ajoute/getAjoute'|">Ajouter une phrase<i class="fa fa-angle-right" aria-hidden="true"></i></a>
 
             </div>

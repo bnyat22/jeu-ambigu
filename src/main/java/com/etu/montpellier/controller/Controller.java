@@ -43,6 +43,19 @@ public class Controller {
         }
         return "index";
     }
+    @GetMapping("/about")
+    public String about(Model model)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        for (GrantedAuthority admin:authentication.getAuthorities())
+        {
+            if (admin.getAuthority().equals("ADMIN"))
+            {
+                model.addAttribute("admin" , admin.getAuthority());
+            }
+        }
+        return "about";
+    }
 
     @GetMapping("/getRank")
     public List<Rank> getRanks()
@@ -50,6 +63,7 @@ public class Controller {
 
         return joueurRepository.getRank();
     }
+
 
 
 

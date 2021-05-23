@@ -40,7 +40,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
-    <div class="container"><a class="navbar-brand">Ambiguss</a>
+    <div class="container"><a class="navbar-brand">Enlight</a>
         <br>
         <button class="navbar-toggler" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"><span
                 class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
@@ -50,6 +50,7 @@
                 <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/'|">Acceuil</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:onclick="|window.location.href= '/admin/'|">Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" th:onclick="|window.location.href= '/about/'|">À propos</a></li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <a href="#" class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase" sec:authorize="isAnonymous()" th:onclick="|window.location.href= '/auth/'|">Se connecter</a>
@@ -68,7 +69,7 @@
 
                 <p>Vous êtes arrivé à la fin il n'y a plus de questions veuillez retourez à la page d'acceuil ou voir votre nouveau placement dans la table Rank</p>
 
-                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/rank/get'|">Rank<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/rank/get'|">Classement<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 <a href="#" sec:authorize="isAuthenticated()" th:onclick="|window.location.href= '/'|">Retounrez<i class="fa fa-angle-right" aria-hidden="true"></i></a>
             </div>
             <div class="col-md-6">

@@ -108,12 +108,12 @@ try {
     public String engistrerUtilisateur(@ModelAttribute("regForm") SignupRequest signupRequest , Model model)  {
         if (utilisateurRepository.existsByPseudo(signupRequest.getPseudo()))
         {
-            model.addAttribute("errorPseudo" , "Cet pseudo exist déjà");
+            model.addAttribute("errorPseudo" , "Cet pseudo existe déjà");
             return "register" ;
         }
         if (utilisateurRepository.existsByEmail(signupRequest.getEmail()))
         {
-            model.addAttribute("errorEmail" , "Cet email exist déjà");
+            model.addAttribute("errorEmail" , "Cet email existe déjà");
             return "register";
 
         }
@@ -121,13 +121,13 @@ try {
 
         if (utilisateurRepository.existsByEmail(signupRequest.getEmail()))
         {
-            model.addAttribute("errorEmail" , "Cet email exist déjà");
+            model.addAttribute("errorEmail" , "Cet email existe déjà");
             return "register";
 
         }
         if (!PasswordValidator.isValid(signupRequest.getPassword()))
         {
-            model.addAttribute("errorChiffre" , "Le mot de passe ne doit pas être moins de 8");
+            model.addAttribute("errorChiffre" , "Le mot de passe ne doit pas être moins de 8 lettres et chiffres");
             model.addAttribute("errorMinMax" , "il doit y avoir au moins une lettre majuscule ,minuscule et un chiffre ");
             return "register" ;
         }
