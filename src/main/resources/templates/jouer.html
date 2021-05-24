@@ -92,6 +92,7 @@
                             </select>
 
                             <select th:name="bni" th:field="*{optionList[__${i.index}__].Choix}" class="form-control">
+                                <option value="0">Choisissez une option</option>
                                 <option th:name="op1" th:each="choix : ${mot.getChoix()}"th:utext="${choix}" th:value="${choix}" >..</option>
                             </select>
                             <label type="text" th:if="*{optionList[__${i.index}__].point}">Vous avez gagné </label>
